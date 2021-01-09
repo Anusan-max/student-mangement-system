@@ -1,7 +1,7 @@
 
-<?php 
+<?php
 
-    
+
 require_once('./config/dbconfig.php');
 
 // creating a new object for dbconfig
@@ -21,9 +21,9 @@ class operations extends dbconfig
             $LastName = $db->check($_POST['Last']);
             $Address = $db->check($_POST['Address']);
             $Phone = $db->check($_POST['Phone']);
- 
 
-            // calling inser_record method and passing the variables 
+
+            // calling inser_record method and passing the variables
 
             if($this->insert_record($FirstName,$LastName,$Address,$Phone))
             {
@@ -37,18 +37,18 @@ class operations extends dbconfig
     }
 
 
-  // Insert Record in the Database Using Query   
-  // method declare with 4 parameters 
+  // Insert Record in the Database Using Query
+  // method declare with 4 parameters
     function insert_record($a,$b,$c,$d)
     {
         global $db;
         // using the passed values to generate insert
         $query = "insert into students (firstname,lastname,address,phoneno) values('$a','$b','$c','$d')";
         $result = mysqli_query($db->connection,$query);
-        
-        //if the db query is success result will not be null 
 
-        // if result is not null / empty / has a value return true , or else false 
+        //if the db query is success result will not be null
+
+        // if result is not null / empty / has a value return true , or else false
         if($result)
         {
             return true;
@@ -119,7 +119,7 @@ class operations extends dbconfig
 
       }
 
-      // Set Session Message 
+      // Set Session Message
       public function set_message($msg)
       {
           if(!empty($msg))
@@ -155,6 +155,79 @@ class operations extends dbconfig
               return false;
           }
       }
+
+      //Employee Record
+      public function Employee_Record()
+      {
+          global $db;
+          if(isset($_POST['btn_register']))
+          {
+
+              $FirstName = $db->check($_POST['First']);
+              $LastName = $db->check($_POST['Last']);
+              $Email = $db->check($_POST['Email']);
+              $Password = $db->check($_POST['Password']);
+
+
+
+
+              if($this->emp_record($FirstName,$LastName,$Email,$Password))
+              {
+                  echo '<div class="alert alert-success"> Your Have Successfully Registered :) </div>';
+              }
+              else
+              {
+                  echo '<div class="alert alert-danger"> Failed </div>';
+              }
+          }
+      }
+
+      function emp_record($a,$b,$c,$d)
+      {
+          global $db;
+
+          $query = "insert into employees (firstname,lastname,email,password) values('$a','$b','$c','$d')";
+          $result = mysqli_query($db->connection,$query);
+
+
+          if($result)
+          {
+              return true;
+          }
+          else
+          {
+              return false;
+          }
+      }
+
+      function login()
+      {
+        global $db;
+        if(isset($_POST['btn_login']))
+        {
+          $Email = $db->check($_POST['Email']);
+          $Password = $db->check($_POST['Password']);
+
+          $sql = "SELECT id FROM employees WHERE email = '$Email' and password = '$Password'";
+          $result = mysqli_query($db->connection,$sql);
+          $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+
+
+        $count = mysqli_num_rows($result);
+
+      // If result matched $myusername and $mypassword, table row must be 1 row
+
+      if($count == 1) {
+         header("location: view.php");
+      }else {
+         echo '<div class="alert alert-danger"> Email or Password is Wrong </div>';
+      }
+
+        }
+
+      }
+
+      
 
     }
 

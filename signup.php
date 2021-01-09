@@ -18,16 +18,18 @@
             <div class="col-lg-6 m-auto">
                 <div class="card mt-5">
                     <div class="card-header">
-                        <h2> Login Form </h2>
+                        <h2> Student Signup Form </h2>
                     </div>
-                        <?php $db->login(); ?>
+                        <?php $db->Store_Record(); ?>
                         <div class="card-body">
                             <form method="POST">
-                              <input type="Email" name="Email" placeholder=" Email Address" class="form-control mb-2" required>
-                              <input type="password" name="Password" placeholder=" Password" class="form-control mb-2" required>
+                                <input type="text" name="First" placeholder=" First Name" class="form-control mb-2" required>
+                                <input type="text" name="Last" placeholder=" Last Name" class="form-control mb-2" required>
+                                <input type="text" name="Address" placeholder=" Address" class="form-control mb-2" required>
+                                <input type="text" name="Phone" placeholder=" Phone" class="form-control mb-2" required>
                         </div>
                     <div class="card-footer">
-                            <button class="btn btn-success" name="btn_login"> Login </button>
+                            <button class="btn btn-success" name="btn_save"> Save </button>
                         </form>
                     </div>
                 </div>
