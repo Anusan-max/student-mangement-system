@@ -167,11 +167,12 @@ class operations extends dbconfig
               $LastName = $db->check($_POST['Last']);
               $Email = $db->check($_POST['Email']);
               $Password = $db->check($_POST['Password']);
+              $encoded_Password = md5($Password);
 
 
 
 
-              if($this->emp_record($FirstName,$LastName,$Email,$Password))
+              if($this->emp_record($FirstName,$LastName,$Email,$encoded_Password))
               {
                   echo '<div class="alert alert-success"> Your Have Successfully Registered :) </div>';
               }
@@ -207,8 +208,9 @@ class operations extends dbconfig
         {
           $Email = $db->check($_POST['Email']);
           $Password = $db->check($_POST['Password']);
+          $encoded_Password = md5($Password);
 
-          $sql = "SELECT id FROM employees WHERE email = '$Email' and password = '$Password'";
+          $sql = "SELECT id FROM employees WHERE email = '$Email' and password = '$encoded_Password'";
           $result = mysqli_query($db->connection,$sql);
           $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 
@@ -227,7 +229,7 @@ class operations extends dbconfig
 
       }
 
-      
+
 
     }
 
