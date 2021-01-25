@@ -1,7 +1,7 @@
 <?php
     require_once('./config/dbconfig.php');
     $db = new operations();
-    $result=$db->view_record();
+    $result=$db->view_student();
 
   
 ?>
@@ -16,12 +16,12 @@
     <title>Student Management System</title>
 </head>
 
-
 <body class="bg-dark">
+
 <?php 
   if(!isset($_SESSION["loggedin"])) {
     
-    echo "<h1>Please Login</h1>";
+    
   
   } else {
 

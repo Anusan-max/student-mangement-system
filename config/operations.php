@@ -65,7 +65,7 @@ class operations extends dbconfig
     }
 
     // View Database Record
-    public function view_record()
+    public function view_student()
     {
         global $db;
         $query = "select * from students";
@@ -147,7 +147,7 @@ class operations extends dbconfig
           }
       }
       // Delete Record
-      public function Delete_Record($id)
+      public function Delete_student($id)
       {
           global $db;
           $query = "delete from students where id='$id'";

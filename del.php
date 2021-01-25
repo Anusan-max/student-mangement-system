@@ -9,14 +9,14 @@ if(isset($_GET['D_id']))
     global $db;
     $id = $_GET['D_id'];
 
-    if($db->Delete_Record($id))
+    if($db->Delete_student($id))
     {
        $db-> set_message('<div class="alert alert-danger"> Student Record Has Been Deleted </div>');
        header("location:view.php");
     }
     else
     {
-        $db-> set_message('<div class="alert alert-danger"> Something Wrong to Delete the Record </div>');
+        $db-> set_message('<div class="alert alert-danger"> Something Wrong to Delete the Student </div>');
     }
 }
 ?>
