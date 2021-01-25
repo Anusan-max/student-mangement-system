@@ -11,7 +11,7 @@ if(isset($_GET['D_id']))
 
     if($db->Delete_Record($id))
     {
-       $db-> set_message('<div class="alert alert-danger"> Your Record Has Been Deleted </div>');
+       $db-> set_message('<div class="alert alert-danger"> Student Record Has Been Deleted </div>');
        header("location:view.php");
     }
     else

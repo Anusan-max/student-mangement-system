@@ -25,21 +25,26 @@ class operations extends dbconfig
 
             // calling inser_record method and passing the variables
 
-            if($this->insert_record($FirstName,$LastName,$Address,$Phone))
-            {
-                echo '<div class="alert alert-success"> Your Record Has Been Saved :) </div>';
+            if (!is_numeric($Phone)) {
+              echo '<div class="alert alert-danger"> Enter valid phone number </div>';
+            } else {
+              if($this->insert_db($FirstName,$LastName,$Address,$Phone))
+              {
+                  echo '<div class="alert alert-success"> Student Record Has Been Saved :) </div>';
+              }
+              else
+              {
+                  echo '<div class="alert alert-danger"> Failed to Register the Student </div>';
+              }
             }
-            else
-            {
-                echo '<div class="alert alert-danger"> Failed </div>';
-            }
+
         }
     }
 
 
   // Insert Record in the Database Using Query
   // method declare with 4 parameters
-    function insert_record($a,$b,$c,$d)
+    function insert_db($a,$b,$c,$d)
     {
         global $db;
         // using the passed values to generate insert
@@ -92,12 +97,12 @@ class operations extends dbconfig
 
             if($this->update_record($ID,$FirstName,$LastName,$Address,$Phone))
             {
-                $this->set_message('<div class="alert alert-success"> Your Record Has Been Updated : )</div>');
+                $this->set_message('<div class="alert alert-success"> Student Record Has Been Updated : )</div>');
                 header("location:view.php");
             }
             else
             {
-                $this->set_message('<div class="alert alert-success"> Something Wrong : )</div>');
+                $this->set_message('<div class="alert alert-success"> Failed to Update the Student Record : )</div>');
             }
           }
       }
@@ -220,6 +225,7 @@ class operations extends dbconfig
       // If result matched $myusername and $mypassword, table row must be 1 row
 
       if($count == 1) {
+        $_SESSION["loggedin"] = "true";
          header("location: view.php");
       }else {
          echo '<div class="alert alert-danger"> Email or Password is Wrong </div>';
