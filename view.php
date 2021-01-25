@@ -15,26 +15,31 @@
     <link rel="stylesheet" href="css/styles.css">
     <title>Student Management System</title>
 </head>
+
+
 <body class="bg-dark">
-
-    <div class="container">
-        <div class="row">
-           <div class="col">
-             <div class="card mt-5">
-               <div class="card-header">
-                   <h2 class="text-center text-dark"> Students Record</h2>
-               </div>
-                 <div calss="card-body">
-                 <?php
-                        $db->display_message();
-                        $db->display_message();
-                 ?>
-
 <?php 
   if(!isset($_SESSION["loggedin"])) {
-    echo "please login";
+    
+    echo "<h1>Please Login</h1>";
+  
   } else {
+
 ?>
+
+<div class="container">
+    <div class="row">
+       <div class="col">
+         <div class="card mt-5">
+           <div class="card-header">
+               <h2 class="text-center text-dark"> Students Record</h2>
+               <a href="signup.php" id="btn-add" class="btn btn-success">Add Student</a>
+           </div>
+             <div calss="card-body">
+             <?php
+                    $db->display_message();
+                    $db->display_message();
+             ?>
 
                     <table id="students" class="table table-bordered">
                     <tr>
